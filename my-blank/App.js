@@ -1,31 +1,35 @@
+//Importaciones
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-web';
 
-const Texto= ()=>{
+const Texto= (props)=>{
+  const {contenido}=props
   return(
-    <Text>Hola mundo REactive native</Text>
+    <Text> {contenido} </Text>
   )    
   }
 
-
+//Main
 
 export default function App() {
   return (
 
     <View style={styles.container}>
-      
-    <Texto> </Texto>  
-      <StatusBar style="auto" />
-     <Texto> </Texto> 
+          <StatusBar style="auto" />      
+
+      <Texto contenido="hola"> </Texto>  
+      <Texto contenido="Mundo"> </Texto> 
+      <Texto contenido="React Native"> </Texto>
+
       <Button title="Presioname"/>
-       <Texto> </Texto>
+
     </View>
 
 
   );
 }
-
+//Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,
