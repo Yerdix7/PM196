@@ -4,9 +4,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-web';
 
 const Texto= (props)=>{
-  const {contenido}=props
+  const {children}=props
   return(
-    <Text> {contenido} </Text>
+    <Text> {children} </Text>
   )    
   }
 
@@ -18,9 +18,9 @@ export default function App() {
     <View style={styles.container}>
           <StatusBar style="auto" />      
 
-      <Texto contenido="hola"> </Texto>  
-      <Texto contenido="Mundo"> </Texto> 
-      <Texto contenido="React Native"> </Texto>
+      <Texto>"hola"</Texto>  
+      <Texto>"Mundo"</Texto> 
+      <Texto>"React Native"</Texto>
 
       <Button title="Presioname"/>
 
