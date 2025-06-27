@@ -4,26 +4,9 @@ import { View, StyleSheet, Text, ImageBackground, ActivityIndicator } from 'reac
 
 
 export default function App() {
-
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        setTimeout(() => setLoading(false), 6000);
-    }, []);
-
-    if (loading) {
-        return (
-            <View style={styles.splash}>
-                <Text style={styles.splashText}>Cargando...</Text>
-                <ActivityIndicator size="large" color="#ffffff"/>
-            </View>
-        );
-    }
-
-    return (
     <ImageBackground
     source={{uri:'https://images.unsplash.com/photo-1506744038136-46273834b3fb'}}
-    style={styles.background}
+    style={StyleSheet.background}
     resizeMode='cover'
     >
         <View style={styles.overlay}>
@@ -31,26 +14,13 @@ export default function App() {
 
         </View>
     </ImageBackground>
-);
+
 }
 //Estilos
 const styles = StyleSheet.create({
-    splash:{
-        flex: 1,
-        backgroundColor: '#2c3e50',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-
-    splashText: {
-        color: 'white',
-        fontSize: 28,
-        marginBottom: 20
-    },
-
     background: {
         flex:1,
-        justifyContent: 'center'
+        justifycontent: 'center'
     },
     overlay:{
         backgroundColor: 'rgba(0,0,0,0.5',
@@ -60,7 +30,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'white',
-        fontSize: 24
+        fontSice: 24
     }
 
 })
