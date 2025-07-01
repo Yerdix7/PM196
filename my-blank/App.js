@@ -1,66 +1,83 @@
-import { setStatusBarBackgroundColor } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, ImageBackground, ActivityIndicator } from 'react-native';
+import React, { useState, useEffect } from "react";
+import {
+  Alert,
+  View,
+  Text,
+  TextInput,
+  Button,
+  StyleSheet,
+  SafeAreaView,
+  ImageBackground,
+  Switch,
+  Image,
+  Platform,
+} from "react-native";
 
+const App = () => {
+  const [nombre, setNombre] = useState("");
+  const [email, setEmail] = useState("");
+  const [aceptaTerminos, setAceptaTerminos] = useState(false);
+  const [cargando, setCargando] = useState(true);
 
-export default function App() {
+  useEffect(() => {
+    // Simula carga de logo durante 2 segundos
+    setTimeout(() => setCargando(false), 2000);
+  }, []);
 
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        setTimeout(() => setLoading(false), 6000);
-    }, []);
-
-    if (loading) {
-        return (
-            <View style={styles.splash}>
-                <Text style={styles.splashText}>Cargando...</Text>
-                <ActivityIndicator size="large" color="#ffffff"/>
-            </View>
-        );
+  const mostrarAlerta = () => {
+    if (!nombre || !email) {
+      Alert.alert("Error", "Por favor, completa todos los campos.");
+      return;
     }
 
+    if (!aceptaTerminos) {
+      Alert.alert("Error", "Debes aceptar los términos y condiciones.");
+      return;
+    }
+
+    Alert.alert(
+      "Registro Exitoso",
+      `Nombre: ${nombre}\nCorreo: ${email}`,
+      [{ text: "OK", onPress: limpiarFormulario }]
+    );
+  };
+
+  const limpiarFormulario = () => {
+    setNombre("");
+    setEmail("");
+    setAceptaTerminos(false);
+  };
+
+  if (cargando) {
     return (
+      <View style={styles.cargando}>
+        <Image
+          source={require("./assets/logo.png")} // Asegúrate de tener el logo aquí
+          style={styles.logo}
+        />
+        <Text style={styles.textoCargando}>Cargando...</Text>
+      </View>
+    );
+  }
+
+  return (
     <ImageBackground
-    source={{uri:'https://images.unsplash.com/photo-1506744038136-46273834b3fb'}}
-    style={styles.background}
-    resizeMode='cover'
+      source={{
+        uri: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+      }}
+      style={styles.fondo}
+      resizeMode="cover"
     >
-        <View style={styles.overlay}>
-            <Text style={styles.text}>Bienvenido a la app</Text>
+      <SafeAreaView style={styles.contenedor}>
+        <View style={styles.formulario}>
+          <Text style={styles.titulo}>Registro de Usuario</Text>
 
-        </View>
-    </ImageBackground>
-);
-}
-//Estilos
-const styles = StyleSheet.create({
-    splash:{
-        flex: 1,
-        backgroundColor: '#2c3e50',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-
-    splashText: {
-        color: 'white',
-        fontSize: 28,
-        marginBottom: 20
-    },
-
-    background: {
-        flex:1,
-        justifyContent: 'center'
-    },
-    overlay:{
-        backgroundColor: 'rgba(0,0,0,0.5',
-        padding: 20,
-        borderRadius: 10,
-        alignSelf: 'center'
-    },
-    text: {
-        color: 'white',
-        fontSize: 24
-    }
-
-})
+          <TextInput
+            style={styles.input}
+            placeholder="Nombre completo *"
+            value={nombre}
+            onChangeText={setNombre}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Correo electrón
