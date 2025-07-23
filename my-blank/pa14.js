@@ -25,12 +25,11 @@ export default function App() {
 
   return (
     <View style={{ flex: 1 }}>
-      {/* <View superior: Header */}
+      {/*  Header  */}
       <View style={styles.header}>
-        <Text style={styles.headerText}>Notas</Text>
+        <Text style={styles.headerText}>Mi app de Notas C:</Text>
       </View>
 
-      {/* <View inferior: Todo lo demás */}
       <View style={styles.container}>
         <FlatList
           data={database}
@@ -40,18 +39,16 @@ export default function App() {
               <Text>{item}</Text>
             </View>
           )}
-          ListEmptyComponent={<Text>No hay notas aún.</Text>}
+          ListEmptyComponent={<Text>No hay ni una nota :C</Text>}
         />
-        <StatusBar style="auto" />
       </View>
 
-      {/* <View> para el <Button> */}
       <View style={styles.fabButton}>
         <Button
-          title="Agregar nota"
+          title="Agregar Nota"
           color="blue"
           onPress={() => setModalVisible(true)}
-        />
+        ></Button>
       </View>
 
       <Modal visible={modalVisible} transparent animationType="fade">
